@@ -26,7 +26,7 @@ class InsertEmbedButton extends StatelessWidget {
         size: 18,
         color: Theme.of(context).iconTheme.color,
       ),
-      fillColor: Theme.of(context).canvasColor,
+      fillColor: Theme.of(context).dividerColor,
       onPressed: () {
         final index = controller.selection.baseOffset;
         final length = controller.selection.extentOffset - index;
@@ -91,7 +91,7 @@ class _LinkStyleButtonState extends State<LinkStyleButton> {
         size: 18,
         color: isEnabled ? theme.iconTheme.color : theme.disabledColor,
       ),
-      fillColor: Theme.of(context).canvasColor,
+      fillColor: Theme.of(context).dividerColor,
       onPressed: pressedHandler,
     );
   }
@@ -459,6 +459,11 @@ class ZefyrToolbar extends StatefulWidget implements PreferredSizeWidget {
           icon: Icons.format_list_bulleted,
         ),
       ),
+      
+      Visibility(
+          visible: !hideListNumbers || !hideListBullets,
+          child: VerticalDivider(
+              indent: 16, endIndent: 16, color: Colors.grey.shade400)),
       Visibility(
         visible: !hideCodeBlock,
         child: ToggleStyleButton(
@@ -468,11 +473,7 @@ class ZefyrToolbar extends StatefulWidget implements PreferredSizeWidget {
         ),
       ),
       Visibility(
-          visible: !hideListNumbers || !hideListBullets || !hideCodeBlock,
-          child: VerticalDivider(
-              indent: 16, endIndent: 16, color: Colors.grey.shade400)),
-      Visibility(
-        visible: !hideQuote,
+        visible:!hideCodeBlock || !hideQuote,
         child: ToggleStyleButton(
           attribute: NotusAttribute.block.quote,
           controller: controller,
