@@ -473,7 +473,7 @@ class ZefyrToolbar extends StatefulWidget implements PreferredSizeWidget {
         ),
       ),
       Visibility(
-        visible:!hideCodeBlock || !hideQuote,
+        visible:!hideQuote,
         child: ToggleStyleButton(
           attribute: NotusAttribute.block.quote,
           controller: controller,
@@ -481,7 +481,7 @@ class ZefyrToolbar extends StatefulWidget implements PreferredSizeWidget {
         ),
       ),
       Visibility(
-          visible: !hideQuote,
+          visible:!hideCodeBlock || !hideQuote,
           child: VerticalDivider(
               indent: 16, endIndent: 16, color: Colors.grey.shade400)),
       Visibility(
